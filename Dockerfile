@@ -1,4 +1,4 @@
-FROM python:3.11-slim-bookworm
+FROM python:3.11-slim-bookworm AS runtime
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
@@ -19,6 +19,8 @@ RUN apt-get update \
 
 COPY requirements.txt ./
 RUN python -m pip install --no-cache-dir -r requirements.txt
+
+FROM runtime AS application
 
 COPY web_main.py main.py review_rules.md ./
 COPY src ./src
