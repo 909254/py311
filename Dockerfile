@@ -31,3 +31,4 @@ RUN mkdir -p /app/web_data/jobs
 EXPOSE 8000
 
 CMD ["python", "web_main.py"]
+
